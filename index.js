@@ -21,6 +21,7 @@ client.on("ready", async () => {
 
 
 async function fetch(id, name, length) {
+   try {
     let data = ""; 
     let data2 = ""; 
     const guild = await client.guilds.cache.get(id);
@@ -36,6 +37,7 @@ async function fetch(id, name, length) {
         if (badges.toString().includes("HOUSE_BRILLIANCE")) continue;
         if (badges.toString().includes("VERIFIED_BOT")) continue;
         if (badges.toString().includes("SPAMMER")) continue;
+        if (badges.toString().includes("ACTIVE_DEVELOEPR")) continue;
         data += `Server Name: ${name} - ${member[1].user.username}#${member[1].user.discriminator} (${member[1].user.id}): ${badges.join(', ')}\n`;
         data2 += `${member[1].user.username}#${member[1].user.discriminator} (${member[1].user.id}): ${badges.join(', ')}\n`;
         accountCount ++;
@@ -45,6 +47,9 @@ async function fetch(id, name, length) {
     console.log(" * ".bgCyan + ` Checked - ${name} - Total Badges - ${accountCount} `.bgBlue + "" + `File: ${time}/${name}-${time}`.bgBlue);
     length = length - 1
     console.log(" * ".bgCyan + ` ${length} servers left.`.bgYellow )
+   } catch (err) {
+    console.log(err)
+   }
 }
 
 
